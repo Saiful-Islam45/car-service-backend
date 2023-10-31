@@ -7,10 +7,6 @@ import { User } from './user.model';
 import bcrypt from 'bcrypt'
 
 const createUser = async (user: IUser): Promise<IUser | null> => {
-  if (!user.password) {
-    user.password = config.default_user_pass as string;
-  }
-
   const id = await generateUserId();
   user.id = id;
 
@@ -49,23 +45,14 @@ const updateUser = async (
   if (!user) {
     throw new ApiError(httpStatus.BAD_REQUEST, 'User not found by ID', id);
   }
-  const { name, ...userData } = payload;
-
-  const updatedUserData: Partial<IUser> = { ...userData };
-
-  if (name && Object.keys(name).length > 0) {
-    Object.keys(name).forEach(key => {
-      const nameKey = `name.${key}` as keyof Partial<IUser>;
-      (updatedUserData as any)[nameKey] = name[key as keyof typeof name];
-    });
-  }
-  if(updatedUserData.password) {
-    updatedUserData.password = await bcrypt.hash(
-      updatedUserData.password,
+ 
+  if(payload.password) {
+    payload.password = await bcrypt.hash(
+      payload.password,
       Number(config.bycrypt_salt_rounds)
     );
   }
-  const result = await User.findByIdAndUpdate({_id: id }, updatedUserData, {
+  const result = await User.findByIdAndUpdate({_id: id }, payload, {
     new: true,
   });
   if (!result) {

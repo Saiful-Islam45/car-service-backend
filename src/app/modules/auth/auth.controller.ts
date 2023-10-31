@@ -8,7 +8,6 @@ const login = tryCatch(async (req: Request, res: Response) => {
   const { ...loginData } = req.body;
   const { refreshToken, ...others } = await AuthService.login(loginData);
 
-  // set refresh token into cookie
   const cookieOptions = {
     secure: config.env === 'production',
     httpOnly: true,

@@ -14,23 +14,19 @@ authRouter.post(
 );
 router.patch(
   '/:id',
-  auth(ENUM_USER_ROLE.ADMIN as string),
+  auth(ENUM_USER_ROLE.CUSTOMER as string),
   validateRequest(UserValidation.updateUserZodSchema),
   UserController.updateUser
 );
 router
-  .route('/my-profile')
-  .get(
-    auth(ENUM_USER_ROLE.SELLER, ENUM_USER_ROLE.BUYER),
-    UserController.getProfileInfo
-  )
+  .route('/update-profile')
   .patch(
-    auth(ENUM_USER_ROLE.SELLER, ENUM_USER_ROLE.BUYER),
+    auth(ENUM_USER_ROLE.CUSTOMER),
     UserController.updateProfileInfo
   );
 router.get(
   '/:id',
-  auth(ENUM_USER_ROLE.ADMIN as string),
+  auth(ENUM_USER_ROLE.CUSTOMER),
   UserController.getUserbyID
 );
 router.delete(

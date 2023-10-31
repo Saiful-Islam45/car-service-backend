@@ -1,24 +1,20 @@
-import { Model } from 'mongoose';
+import { Model, Types } from 'mongoose';
 
 export interface IUser {
   _id?: string;
   id: string;
   phoneNumber: string;
-  role: 'seller' | 'buyer';
+  role: 'customer';
   password: string;
-  name: {
-    firstName: string;
-    lastName: string;
-  };
+  name: string;
   address: string;
-  budget: number;
-  income: number;
+  payment?: Types.ObjectId ;
   createdAt?: Date;
   updatedAt?: Date;
 }
 export type UserModel = {
   isUserExist(
-    phoneNumber: string
+    email: string
   ): Promise<Pick<IUser, '_id' | 'password' | 'role' >>;
   isPasswordMatched(
     givenPassword: string,
