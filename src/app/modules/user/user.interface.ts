@@ -4,6 +4,7 @@ export interface IUser {
   _id?: string;
   id: string;
   phoneNumber: string;
+  email: string;
   role: 'customer';
   password: string;
   name: string;
@@ -15,7 +16,7 @@ export interface IUser {
 export type UserModel = {
   isUserExist(
     email: string
-  ): Promise<Pick<IUser, '_id' | 'password' | 'role' >>;
+  ): Promise<Pick<IUser, '_id' | 'password' | 'role' | 'email' >>;
   isPasswordMatched(
     givenPassword: string,
     savedPassword: string

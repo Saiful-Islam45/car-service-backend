@@ -7,6 +7,7 @@ const userSchema = new mongoose.Schema<IUser, UserModel>(
   {
     id: { type: String, required: true },
     phoneNumber: { type: String, required: true },
+    email: { type: String, required: true },
     role: { type: String, enum: ['customer'], required: true },
     password: { type: String, required: true, select: 0 },
     name: {
@@ -30,8 +31,8 @@ const userSchema = new mongoose.Schema<IUser, UserModel>(
 
 userSchema.statics.isUserExist = async function (
   email: string
-): Promise<Pick<IUser, '_id' | 'password' | 'role'> | null> {
-  return await User.findOne({ email }, { _id: 1, password: 1, role: 1 });
+): Promise<Pick<IUser, '_id' | 'password' | 'role' | 'email'> | null> {
+  return await User.findOne({ email }, { _id: 1, password: 1, role: 1, email: 1 });
 };
 
 userSchema.statics.isPasswordMatched = async function (

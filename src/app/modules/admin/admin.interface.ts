@@ -4,29 +4,24 @@ export interface IAdmin {
   _id?: string;
   phoneNumber: string;
   role: 'admin';
+  email: string;
   password: string;
-  name: {
-    firstName: string;
-    lastName: string;
-  };
+  name: string;
   address: string;
 }
 
 export type AdminModel = {
   isAdminExist(
-    phoneNumber: string
-  ): Promise<Pick<IAdmin, '_id' | 'password' | 'role' >>;
+    email: string
+  ): Promise<Pick<IAdmin, '_id' | 'password' | 'role' | 'email' >>;
   isPasswordMatched(
     givenPassword: string,
     savedPassword: string
   ): Promise<boolean>;
 } & Model<IAdmin>;
 
-// export type AdminModel = Model<IAdmin, Record<string, unknown>>;
-
-
 export type ILoginUser = {
-  phoneNumber: string;
+  email: string;
   password: string;
 };
 

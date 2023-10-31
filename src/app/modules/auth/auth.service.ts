@@ -11,8 +11,8 @@ import config from '../../../config';
 import { Secret } from 'jsonwebtoken';
 
 const login = async (payload: ILoginUser): Promise<ILoginUserResponse> => {
-  const { phoneNumber, password } = payload;
-  const isUserExist = await User.isUserExist(phoneNumber);
+  const { email, password } = payload;
+  const isUserExist = await User.isUserExist(email);
   if (!isUserExist) {
     throw new ApiError(httpStatus.NOT_FOUND, 'User does not exist');
   }
@@ -26,13 +26,13 @@ const login = async (payload: ILoginUser): Promise<ILoginUserResponse> => {
 
   const { _id: userId, role } = isUserExist;
   const accessToken = jwtHelpers.createToken(
-    { userId, role },
+    { userId, role, email },
     config.jwt_secret as Secret,
     config.jwt_expires_in as string
   );
 
   const refreshToken = jwtHelpers.createToken(
-    { userId, role },
+    { userId, role, email },
     config.jwt_refresh_secret as Secret,
     config.jwt_refresh_expires_in as string
   );

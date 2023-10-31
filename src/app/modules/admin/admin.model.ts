@@ -6,21 +6,10 @@ import bcrypt from 'bcrypt';
 const adminSchema = new mongoose.Schema<IAdmin, AdminModel>(
   {
     phoneNumber: { type: String, required: true, unique: true },
+    email: { type: String, required: true, unique: true },
     role: { type: String, enum: ['admin'], required: true },
     password: { type: String, required: true, select: 0 },
-    name: {
-      type: {
-        firstName: {
-          type: String,
-          required: true,
-        },
-        lastName: {
-          type: String,
-          required: true,
-        },
-      },
-      required: true,
-    },
+    name: { type: String, required: true},
     address: { type: String, required: true },
   },
   {
@@ -32,9 +21,9 @@ const adminSchema = new mongoose.Schema<IAdmin, AdminModel>(
 );
 
 adminSchema.statics.isAdminExist = async function (
-  phoneNumber: string
-): Promise<Pick<IAdmin, '_id' | 'password' | 'role'> | null> {
-  return await Admin.findOne({ phoneNumber }, { _id: 1, password: 1, role: 1 });
+  email: string
+): Promise<Pick<IAdmin, '_id' | 'password' | 'role' | 'email'> | null> {
+  return await Admin.findOne({ email }, { _id: 1, password: 1, role: 1 });
 };
 
 adminSchema.statics.isPasswordMatched = async function (
@@ -45,7 +34,6 @@ adminSchema.statics.isPasswordMatched = async function (
 };
 
 adminSchema.pre('save', async function (next) {
-  // hashing password
   this.password = await bcrypt.hash(
     this.password,
     Number(config.bycrypt_salt_rounds)
