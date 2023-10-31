@@ -1,45 +1,15 @@
-### Live Link: https://cow-hat-auth-backend-saiful-islam45.vercel.app
-### Application Routes:
-#### Main part
-#### Auth (User)
-` https://cow-hat-auth-backend-saiful-islam45.vercel.app/api/v1/auth/login (POST)`
+## Car Rental Service
 
-` https://cow-hat-auth-backend-saiful-islam45.vercel.app/api/v1/auth/signup (POST)`
+### Requirements:
 
-` https://cow-hat-auth-backend-saiful-islam45.vercel.app/api/v1/auth/refresh-token (POST)`
-#### Auth (Admin)
-` https://cow-hat-auth-backend-saiful-islam45.vercel.app/api/v1/admins/create-admin (POST)`
-
-` https://cow-hat-auth-backend-saiful-islam45.vercel.app/api/v1/admins/login (POST)`
-#### User
-` https://cow-hat-auth-backend-saiful-islam45.vercel.app/api/v1/users (GET) (64a69d05ebfc0ea8ca779b2c)`
-
-` https://cow-hat-auth-backend-saiful-islam45.vercel.app/api/v1/users/64a69d05ebfc0ea8ca779b2c (Single GET)`
-
-` https://cow-hat-auth-backend-saiful-islam45.vercel.app/api/v1/users/64a69d05ebfc0ea8ca779b2c (PATCH) `
-
-` https://cow-hat-auth-backend-saiful-islam45.vercel.app/api/v1/users/64a69d05ebfc0ea8ca779b2c (DELETE) `
-#### Cows
-` https://cow-hat-auth-backend-saiful-islam45.vercel.app/api/v1/cows (POST)`
-
-` https://cow-hat-auth-backend-saiful-islam45.vercel.app/api/v1/cows (GET)`
-
-` https://cow-hat-auth-backend-saiful-islam45.vercel.app/api/v1/cows/64a7e126761a54b162276c7b (Single GET)`
-
-` https://cow-hat-auth-backend-saiful-islam45.vercel.app/api/v1/cows/64a7e126761a54b162276c7b (PATCH)`
-
-` https://cow-hat-auth-backend-saiful-islam45.vercel.app/api/v1/cows/64a7e126761a54b162276c7b (DELETE)`
-#### Orders
-` https://cow-hat-auth-backend-saiful-islam45.vercel.app/api/v1/orders (POST)`
-
-` https://cow-hat-auth-backend-saiful-islam45.vercel.app/api/v1/orders (GET)`
-#### Bonus Part
-#### Admin
-` https://cow-hat-auth-backend-saiful-islam45.vercel.app/api/v1/admins/create-admin (POST)`
-
-#### My Profile
-` https://cow-hat-auth-backend-saiful-islam45.vercel.app/api/v1/users/my-profile (GET)`
-
-` https://cow-hat-auth-backend-saiful-islam45.vercel.app/api/v1/users/my-profile (PATCH)`
-#### Order:
-` https://cow-hat-auth-backend-saiful-islam45.vercel.app/api/v1/orders/64aa4619a301ac8955b799e9 (GET)`
+- Car rental service should ensure an intuitive and responsive design for easy navigation on both desktop and mobile devices.
+- Header should have quick contact information.
+- User can search and filter by location, price and name.
+- have a hero section with advertisement information
+- user can see diffreent categories cars also have different car sections, could have a popular car category section
+- After click any  category they have to redirect to related cars page.
+- After clicking any car, user can see all specifications, price rent options and also reviews.
+- User can give review after signin.
+- If user want to rent that car they have to redirect to car form to fillup related info to rent car.
+- have to check car availablity before payment.
+- Have why choose us and feedback section.
